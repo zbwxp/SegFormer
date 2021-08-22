@@ -4,8 +4,8 @@ _base_ = [
     '../../_base_/default_runtime.py',
     '../../_base_/schedules/schedule_160k_adamw.py'
 ]
-norm_cfg = dict(type='SyncBN', requires_grad=True)
-# norm_cfg = dict(type='GN', num_groups=4, requires_grad=True)
+# norm_cfg = dict(type='SyncBN', requires_grad=True)
+norm_cfg = dict(type='GN', num_groups=4, requires_grad=True)
 # data settings
 dataset_type = 'ADE20KDataset'
 data_root = '/media/bz/D/data/ADEChallengeData2016'
@@ -86,7 +86,7 @@ model = dict(
         c1_in_channels=64,
         c1_channels=48,
         dropout_ratio=0.1,
-        num_classes=19,
+        num_classes=150,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(
@@ -99,7 +99,7 @@ model = dict(
         num_convs=1,
         concat_input=False,
         dropout_ratio=0.1,
-        num_classes=19,
+        num_classes=150,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(
