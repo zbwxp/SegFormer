@@ -22,11 +22,12 @@ from .uper_head import UPerHead
 from .bilinear_pad_head_fast import BilinearPADHead_fast
 
 from .segformer_head import SegFormerHead
+from .trans_nrd import Trans_nrd
 
 __all__ = [
     'FCNHead', 'PSPHead', 'ASPPHead', 'PSAHead', 'NLHead', 'GCHead', 'CCHead',
     'UPerHead', 'DepthwiseSeparableASPPHead', 'ANNHead', 'DAHead', 'OCRHead',
     'EncHead', 'DepthwiseSeparableFCNHead', 'FPNHead', 'EMAHead', 'DNLHead',
     'PointHead', 'APCHead', 'DMHead', 'LRASPPHead',
-    'SegFormerHead', 'BilinearPADHead_fast'
+    'SegFormerHead', 'BilinearPADHead_fast', 'Trans_nrd'
 ]
