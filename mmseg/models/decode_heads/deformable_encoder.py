@@ -101,7 +101,12 @@ class Deformable_encoder(nn.ModuleList):
         memory = encoder_results["memory"]
         encoded_maps = self.flat2feature(memory, encoder_results["spatial_shapes"],
                                          encoder_results["level_start_index"])
-        out = encoded_maps[-2]
+        # out = encoded_maps[-2]
+        out = []
+        for map in encoded_maps:
+            out.append(F.interpolate(map, size=encoded_maps[-2].size()[-2:], mode="nearest"))
+
+        out = torch.cat(out, dim=1)
 
         return out
 

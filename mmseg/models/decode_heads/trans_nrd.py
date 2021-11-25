@@ -55,12 +55,12 @@ class DynHead(nn.Module):
         self.classifier = nn.Sequential(
             ConvModule(
                 in_channels,
-                in_channels * 2,
+                in_channels // 2,
                 3,
                 padding=1,
                 norm_cfg=norm_cfg,
                 act_cfg=act_cfg, ),
-            nn.Conv2d(in_channels * 2, num_out_channel, 1)
+            nn.Conv2d(in_channels // 2, num_out_channel, 1)
         )
 
         nn.init.xavier_normal_(self.classifier[-1].weight)
@@ -108,7 +108,7 @@ class Trans_nrd(ASPPHead):
             norm_cfg=self.norm_cfg,
             act_cfg=self.act_cfg)
 
-        last_stage_ch = 256
+        last_stage_ch = self.channels * 2
         self.classifier = DynHead(last_stage_ch,
                                   self.pad_out_channel,
                                   self.norm_cfg,
@@ -117,7 +117,7 @@ class Trans_nrd(ASPPHead):
                                   self.dyn_ch,
                                   self.mask_ch,
                                   self.use_low_level_info,
-                                  channel_reduce_factor)
+                                  2)
 
         if c1_in_channels > 0:
             self.c1_bottleneck = nn.Sequential(
